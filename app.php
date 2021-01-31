@@ -2,6 +2,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" </head>
     <?php 
 include('db.php');
+// date_default_timezone_set();
+// echo "la fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y") ." Hora: ".date("h").":".date('i').":".date('s');
+
+
 
 if (isset ($_POST['guardar'])){
     $numero = rand(1,1000);
@@ -45,10 +49,4 @@ if (isset ($_POST['guardar'])){
         
     }
 
-
- 
-
-    // if (!$resultado) {
-    //     echo "Error". mysqli_error($conexion);
-    // }
    }

@@ -17,15 +17,28 @@ include('db.php')        ?>
         <center>
             <img src="assets/img/aging_banner.jpg" alt="Imagen" class="img-fluid rounded">
         </center>
+        <center>
+            <div class="alert alert-primary mt-3" style="width: 76%;">
+                <center>INSTRUCCIONES: </center>
+                <ul style="list-style: none;">
+                    <li>1. Escribe tu nick en el cuadro de texto</li>
+                    <li>2. haz click sobre el botón guardar</li>
+                </ul>
 
+                <p style="text-align: center;">La pagina generará automaticamente un número aleatorio enter 0 y 1000, el
+                    jugador que obtenga el número más cercano a 1000 será el ganador, solo se permite un turno por
+                    jugador, el cual quedará registrado con nickname,fecha y hora. Buena suerte! </p>
+            </div>
+        </center>
         <form action="app.php" method="POST">
             <center>
                 <div class="form-group">
                     <h1>Ingresa tu nickname</h1>
-                    <input type="text" class="form-control" name="user" required style="width: 50%;">
+                    <input type="text" class="form-control" name="user" required style="width: 50%;" id="nick">
                     <small id="emailHelp" class="form-text text-muted">Al dar click en guardar se registrará un número
                         aleatorio entre 0 y 1.000, Solo tendrás una oportunidad</small>
-                    <button type="submit" class="btn btn-primary" name="guardar">Guardar</button>
+                    <button type="submit" class="btn btn-primary" name="guardar"
+                        onclick="localStorage()">Guardar</button>
                 </div>
             </center>
         </form>
@@ -33,12 +46,23 @@ include('db.php')        ?>
 
 
         <?php
-        $consulta ="SELECT * FROM user";
+        $consulta ="SELECT * FROM user order by fecha_actual desc";
         $res =mysqli_query($conexion,$consulta);
-        ?>
 
+        // $cons= mysqli_query($conexion,"SELECT MAX(numero) AS maxNum FROM user");
+        $cons= mysqli_query($conexion,"SELECT * FROM user WHERE numero = (SELECT MAX(numero) AS maxNum FROM user)");
+        
+        ?>
         <center>
-            <table style="width:26%">
+            <div class="alert alert-success" style="width: 50%;">
+                El ganador es : <?php while ($row = $cons->fetch_assoc()) {
+                         echo '<h1>'.$row['user'].'</h1>'."Número: ".'<h1>'.$row['numero'].'</h1>'; 
+                         
+            } ?>
+            </div>
+        </center>
+        <div class="row mb-5">
+            <table style="margin: 0 auto;" class="col-md-8 mr-5">
                 <tr>
                     <th>Nickname</th>
                     <th>Numero</th>
@@ -47,15 +71,15 @@ include('db.php')        ?>
                 <?php         while($reg = mysqli_fetch_array($res)){
                 echo"
                  <tr>
-                 <td>".$reg['user']."</td>
+                 <td> <h6> ".$reg['user']." </h6> </td>
                  <td>".$reg['numero']."</td>
-                 <td>50</td>
+                 <td>".$reg['fecha_actual']."</td>
              </tr>";
             }
             mysqli_close($conexion);
            ?>
             </table>
-        </center>
+        </div>
     </div>
 </body>
 
