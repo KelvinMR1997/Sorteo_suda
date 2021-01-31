@@ -64,11 +64,6 @@ include('db.php')        ?>
         margin: 0rem 9rem 0;
     }
 
-    .cabecera {
-        /* width: 100%;
-        height: 19rem; */
-    }
-
     div-cent {
         width: 80%;
     }
