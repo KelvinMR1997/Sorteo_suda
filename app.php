@@ -31,7 +31,7 @@ if (isset ($_POST['guardar'])){
             
             
             <div>
-            <p>Serás redireccionado en <span id='counter'>2</span> segundo(s).</p>
+            <p>Serás redireccionado en <span id='counter'>1</span> segundo(s).</p>
         </div>
     </div>
         <script type='text/javascript'>
