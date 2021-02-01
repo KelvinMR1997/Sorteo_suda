@@ -36,7 +36,7 @@ include('db.php')        ?>
             <center>
                 <div class="form-group">
                     <h1>Ingresa tu nickname</h1>
-                    <input type="text" class="form-control" name="user" required style="width: 50%;" id="nick">
+                    <input type="text" class="form-control" name="user" required style="width: 50%;" id="nick" disable>
                     <small id="emailHelp" class="form-text text-muted">Al dar click en guardar se registrará un número
                         aleatorio entre 0 y 1.000, Solo tendrás una oportunidad</small>
                     <button type="submit" class="btn btn-primary" name="guardar"
