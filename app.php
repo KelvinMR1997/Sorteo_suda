@@ -6,13 +6,16 @@ include('db.php');
 // date_default_timezone_set();
 // echo "la fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y") ." Hora: ".date("h").":".date('i').":".date('s');
 
-
-
 if (isset ($_POST['guardar'])){
-    $numero = rand(1,1000);
+    $numero = rand(1,100);
     $user = $_POST['user'];
     // echo $user .    $numero;
     $consulta =mysqli_query($conexion,"SELECT * FROM user WHERE numero = '$numero'");
+    
+
+     
+    
+
     $filas = mysqli_num_rows($consulta);
     if($filas> 0){
         die(header("location:index.html"));
@@ -20,8 +23,7 @@ if (isset ($_POST['guardar'])){
     else{
         $query ="INSERT INTO user (user,numero) VALUES ('$user','$numero')";
         $resultado = mysqli_query($conexion,$query);
-        // echo " <h1 class='succes-text'>Listo! tu número es: </h1>".$numero;
-        
+
         echo "<div class='container'>
         <div class='alert alert-success' role='alert'>
             <div class='text-center'>
